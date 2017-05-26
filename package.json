@@ -1,0 +1,44 @@
+{
+  "name": "PWAssemble-Configurator",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --fix",
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^0.8.0",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "express-fileupload": "0.1.2",
+    "express-gcs-uploader": "^1.0.13",
+    "firebase": "^3.7.4",
+    "google-cloud": "^0.49.0",
+    "morgan": "~1.8.1",
+    "multer": "^1.3.0",
+    "pug": "~2.0.0-beta6",
+    "request": "^2.81.0",
+    "serve-favicon": "~2.4.2",
+    "uuid-js": "^0.7.5"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-google": "^0.7.1"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 7
+    },
+    "extends": [
+      "google"
+    ],
+    "env": {
+      "es6": true,
+      "browser": true,
+      "serviceworker": true,
+      "node": true
+    }
+  }
+}

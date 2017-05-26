@@ -1,0 +1,81 @@
+#colorsBlock {
+  margin-bottom: 100px;
+  padding-bottom: 100px;
+  position: relative;
+}
+.colorPicker-wrapper, .colorPicker {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.colorPicker-wrapper label {
+  white-space: normal;
+  width: 25%;
+}
+.colorPicker-wrapper input {
+  margin-left: calc(13% - 25px);
+  position: absolute;
+  top: 95px;
+  z-index: 2;
+}
+.colorPicker .color {
+  bottom: -70px;
+  margin-left: calc(13% - 15px);
+  position: absolute;
+}
+#primaryBgColorPicker .color,
+#primaryBgColorPicker .picker-label,
+#primaryBgColorWrapper label,
+#primaryBgColorWrapper input {
+  left: 25%;
+}
+#secondaryFgColorPicker .color,
+#secondaryFgColorPicker .picker-label,
+#secondaryFgColorWrapper label,
+#secondaryFgColorWrapper input {
+  left: 50%;
+}
+#secondaryBgColorPicker .color,
+#secondaryBgColorPicker .picker-label,
+#secondaryBgColorWrapper label,
+#secondaryBgColorWrapper input {
+  left: 75%;
+}
+
+.image-container {
+  width: 100%;
+}
+.picker-label {
+  bottom: -30px;
+  position: absolute;
+  width: 25%;
+}
+.form-container {
+  max-width: 516px;
+  width: 100%;
+}
+.mdl-textfield {
+  width: 100%;
+}
+
+
+.mdl-button--file input {
+  cursor: pointer;
+  height: 100%;
+  right: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  z-index: 4;
+}
+
+.mdl-textfield--file .mdl-textfield__input {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+}
+.mdl-textfield--file .mdl-button--file {
+  right: 0;
+}
