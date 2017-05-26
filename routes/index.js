@@ -1,5 +1,5 @@
 let express = require('express');
-let router = express.Router();
+let router = new express.Router();
 let images = require('../lib/images');
 let fs = require('fs');
 let path = require('path');

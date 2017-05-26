@@ -1,5 +1,5 @@
 let express = require('express');
-let router = express.Router();
+let router = new express.Router();
 let images = require('../lib/images');
 
 let fieldsArray = [
@@ -19,11 +19,14 @@ let fieldsArray = [
 ];
 
 router.post('/', images.multer.fields(fieldsArray), function(req, res, next) {
-  images.uploadFile(req).then(function(result) {
-    res.send(result);
-  }).catch(function(err) {
-    console.log(err);
-  });
+  images
+    .uploadFile(req)
+    .then(function(result) {
+      res.send(result);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
 });
 
 module.exports = router;

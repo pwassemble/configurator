@@ -3,7 +3,8 @@
   padding-bottom: 100px;
   position: relative;
 }
-.colorPicker-wrapper, .colorPicker {
+.colorPicker-wrapper,
+.colorPicker {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -43,7 +44,6 @@
 #secondaryBgColorWrapper input {
   left: 75%;
 }
-
 .image-container {
   width: 100%;
 }
@@ -59,8 +59,6 @@
 .mdl-textfield {
   width: 100%;
 }
-
-
 .mdl-button--file input {
   cursor: pointer;
   height: 100%;
@@ -71,7 +69,6 @@
   width: 300px;
   z-index: 4;
 }
-
 .mdl-textfield--file .mdl-textfield__input {
   box-sizing: border-box;
   width: calc(100% - 32px);

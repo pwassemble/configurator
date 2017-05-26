@@ -1,17 +1,6 @@
-
-let config = {
-  apiKey: 'AIzaSyAYNL_pXtUz8xa5Qkw9YA1PlrXQSeeDkz4',
-  authDomain: 'node-test-36a42.firebaseapp.com',
-  databaseURL: 'https://node-test-36a42.firebaseio.com',
-  storageBucket: 'node-test-36a42.appspot.com',
-  messagingSenderId: '13908002465',
-};
-firebase.initializeApp(config);
-
-let uploadFile = function(el) {
+window.uploadFile = function(el) {
   let imageContainer = document.getElementById('imageContainer');
   let img = document.createElement('img');
-  let tStart = performance.now();
   let file = el.files[0];
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -20,12 +9,19 @@ let uploadFile = function(el) {
       imageContainer.innerHTML = '';
       imageContainer.appendChild(img);
       img.onload = function() {
-        let rect = img.getBoundingClientRect();
         img.width = 500;
         generateColorPicker('primaryFgColor', 'Primary foreground Color', img);
         generateColorPicker('primaryBgColor', 'Primary background Color', img);
-        generateColorPicker('secondaryFgColor', 'Secondary foreground Color', img);
-        generateColorPicker('secondaryBgColor', 'Secondary background Color', img);
+        generateColorPicker(
+          'secondaryFgColor',
+          'Secondary foreground Color',
+          img
+        );
+        generateColorPicker(
+          'secondaryBgColor',
+          'Secondary background Color',
+          img
+        );
       };
     }
   };
@@ -35,7 +31,7 @@ let uploadFile = function(el) {
   xhr.send(formData);
 };
 
-let toggleUploadImageField = function(el) {
+window.toggleUploadImageField = function(el) {
   let fileWrapper = document.getElementById('fileForPicker');
   if (el.checked) {
     fileWrapper.style.display = 'block';
@@ -44,7 +40,7 @@ let toggleUploadImageField = function(el) {
   }
 };
 
-let toggleCustomColorPicker = function(el, id) {
+window.toggleCustomColorPicker = function(el, id) {
   let nativePicker = document.getElementById(id + 'Input');
   let picker = document.getElementById(id);
   let img = document.getElementById('imageContainer').children[0];
@@ -60,7 +56,8 @@ let toggleCustomColorPicker = function(el, id) {
     nativePicker.style.display = 'block';
   }
 };
-var generateColorPicker = function(id, labelText, image) {
+
+window.generateColorPicker = function(id, labelText, image) {
   let container = document.createElement('div');
   container.id = id + 'Picker';
   container.className = 'colorPicker';
@@ -86,7 +83,7 @@ var generateColorPicker = function(id, labelText, image) {
   place.innerHTML = '';
   place.appendChild(container);
   // init color picker
-  let picker = tinycolorpicker(container);
+  tinycolorpicker(container);
 
   // put the image to canvas
   let c = container.children[2].children[0];
@@ -96,7 +93,7 @@ var generateColorPicker = function(id, labelText, image) {
   ctx.drawImage(image, 0, 0, 500, image.height);
 };
 
-let generateNativeColorPicker = function(id) {
+window.generateNativeColorPicker = function(id) {
   let input = document.createElement('input');
   input.type = 'color';
   input.name = 'id';
@@ -105,7 +102,6 @@ let generateNativeColorPicker = function(id) {
   place.appendChild(input);
 };
 
-let showFileName = function(target) {
+window.showFileName = function(target) {
   target.parentElement.parentElement.childNodes[0].value = target.files[0].name;
 };
-
