@@ -15,6 +15,9 @@ let fieldsArray = [
   {name: 'primaryBg', maxCount: 1},
   {name: 'secondaryFg', maxCount: 1},
   {name: 'secondaryBg', maxCount: 1},
+  {name: 'productCategory', maxCount: 1},
+  {name: 'productQuery', maxCount: 1},
+  {name: 'rssFeed', maxCount: 1},
   {name: 'template', maxCount: 1},
 ];
 
@@ -24,8 +27,9 @@ router.post('/', images.multer.fields(fieldsArray), function(req, res, next) {
     .then(function(result) {
       res.send(result);
     })
-    .catch(function(err) {
-      console.log(err);
+    .catch(function(error) {
+      console.log(error);
+      res.render('error', {error: error});
     });
 });
 

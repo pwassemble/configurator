@@ -8,7 +8,10 @@ block content
     header.mdl-layout__header
     .mdl-grid.form-container
         form.params-form.mdl-cell.mdl-cell--12-col(action='/upload', method='POST', enctype="multipart/form-data")
-          input(type='hidden', name='bucketName', value=configObj.bucketName)
+          .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input(type='text', name='bucketName', value=configObj.bucketName, readonly)
+            label.mdl-textfield__label Bucket name
+          br
           .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
             input.mdl-textfield__input(type='text', name='companyName', value=configObj.companyName)
             label.mdl-textfield__label Company name
@@ -25,15 +28,15 @@ block content
               i.material-icons attach_file
               input(type='file', name='homescreenIcon', onchange='showFileName(this)')
           br
-          .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-            input.mdl-textfield__input(type='text', name='heroText', value=configObj.heroText)
-            label.mdl-textfield__label Hero text
-          br
           .mdl-textfield.mdl-js-textfield.mdl-textfield--file
             input.mdl-textfield__input(placeholder='Hero image', type='text', readonly, value=configObj.heroImage)
             .mdl-button.mdl-button--primary.mdl-button--icon.mdl-button--file
               i.material-icons attach_file
               input(type='file', name='heroImage', onchange='showFileName(this)')
+          br
+          .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+            input.mdl-textfield__input(type='text', name='heroText', value=configObj.heroText)
+            label.mdl-textfield__label Hero text
           br
           .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
             input.mdl-textfield__input(type='text', name='subText', value=configObj.subText)
@@ -56,7 +59,6 @@ block content
           br
           #colorsBlock
             #imageContainer.image-container
-
             #primaryFgColorWrapper.colorPicker-wrapper
               label.mdl-textfield__label Primary foreground color
               input#primaryFgColorPickerInput(type='color', name='primaryFgColor', value=configObj.primaryFgColor)
