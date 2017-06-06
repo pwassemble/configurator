@@ -25,7 +25,7 @@ router.post('/', images.multer.fields(fieldsArray), function(req, res, next) {
   images
     .uploadFile(req)
     .then(function(result) {
-      res.send(result);
+      res.render('ready', {result: {id: result}});
     })
     .catch(function(error) {
       console.log(error);

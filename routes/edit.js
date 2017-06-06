@@ -7,6 +7,10 @@ let parseFileNames = function(obj) {
   if (obj) {
     fileKeys.forEach(function(key) {
       let url = obj[key + 'Url'];
+      if (!url) {
+        obj[key] = '';
+        return;
+      }
       let parts = url.split('/');
       let index = parts.length - 1;
       obj[key] = parts[index];
@@ -20,12 +24,11 @@ router.get('/:bucketId', function(req, res) {
     .getConfigJson(req.params.bucketId)
     .then(function(configObj) {
       configObj.bucketName = req.params.bucketId;
-      console.log(configObj);
       parseFileNames(configObj);
       res.render('index', {configObj: configObj});
     })
-    .catch(function(err) {
-      console.log(err);
+    .catch(function(error) {
+      console.log(error);
     });
 });
 
