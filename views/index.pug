@@ -4,21 +4,23 @@ block script
   script(src='/javascripts/client_upload.js')
 
 block content
+  script.
+    const configObj = !{JSON.stringify(configObj)};
+  h1.mdc-typography--title.--mdc-theme-primary
+    img.logo(src='images/pwassemble.svg', height=50, width=50)
+    | PWAssemble
+    span.mdc-typography--caption.--mdc-theme-accent —Configurator
   form.params-form.mdc-cell.mdc-cell--12-col(action='/upload', method='POST', enctype="multipart/form-data")
     input(type='hidden', name='bucketName', value=configObj.bucketName)
     fieldset
-      legend Company Data
+      legend.mdc-typography--subheading2 📝 Company Data
       .mdc-form-field
-        select.mdc-select(name='template', value=configObj.template, required)
-          option(value='', default, selected) —Select Industry Template—
-          option(value='fashion') Fashion
-          option(value='finance') Finance
-          option(value='news') News
-          option(value='retail') Retail
-          option(value='travel') Travel
+        select.mdc-select(id='template', name='template', required)
+          option(value='', disabled, selected) —Select Industry Template—
+          include templates
       .mdc-form-field
         .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input.mdc-textfield__input(type='text', name='companyName', value=configObj.companyName)
+          input.mdc-textfield__input(type='text', name='companyName', required, value=configObj.companyName)
           label.mdc-textfield__label(for='companyName') Company Name
       .mdc-form-field
         .mdc-textfield(data-mdc-auto-init='MDCTextfield')
@@ -33,81 +35,24 @@ block content
           input.mdc-textfield__input(type='text', name='ctaText', value=configObj.ctaText)
           label.mdc-textfield__label Call-to-Action Text
     fieldset
-      legend Company Visuals
+      legend.mdc-typography--subheading2 🎨 Company Visuals
       .mdc-form-field
         .mdc-textfield.mdc-textfield--file
-          input.mdc-textfield__input(placeholder='Company Logo', type='text', readonly, value=configObj.companyLogo)
+          input.mdc-textfield__input(placeholder='Company Logo', type='text', readonly, value=configObj.companyLogo, required)
           .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-            input(type='file', name='companyLogo', onchange='showFileName(this)')
+            input(type='file', name='companyLogo', value=configObj.companyLogo, onchange='showFileName(this)', required)
       .mdc-form-field
         .mdc-textfield.mdc-textfield--file
-          input.mdc-textfield__input(placeholder='Homescreen Icon', type='text', readonly, value=configObj.homescreenIcon)
+          input.mdc-textfield__input(placeholder='Homescreen Icon', type='text', readonly, value=configObj.homescreenIcon, required)
           .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-            input(type='file', name='homescreenIcon', onchange='showFileName(this)')
+            input(type='file', name='homescreenIcon', value=configObj.homescreenIcon, onchange='showFileName(this)', required)
       .mdc-form-field
         .mdc-textfield.mdc-textfield--file
           input.mdc-textfield__input(placeholder='Hero Image', type='text', readonly, value=configObj.heroImage)
           .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-            input(type='file', name='heroImage', onchange='showFileName(this)')
+            input(type='file', name='heroImage', value=configObj.heroImage, onchange='showFileName(this)')
     fieldset
-      legend Industry-specific Things
-      .mdc-form-field
-        select.mdc-select(name='productCategory', value=configObj.productCategory)
-          // From http://docs.aws.amazon.com/AWSECommerceService/latest/DG/LocaleUS.html
-          option(value='', default, selected) —Select Product Category—
-          option(value='All') All
-          option(value='Appliances') Appliances
-          option(value='ArtsAndCrafts') Arts, Crafts &amp; Sewing
-          option(value='Automotive') Automotive
-          option(value='Baby') Baby
-          option(value='Beauty') Beauty
-          option(value='Books') Books
-          option(value='Collectibles') Collectibles &amp; Fine Arts
-          option(value='Electronics') Electronics
-          option(value='Fashion') Clothing, Shoes &amp; Jewelry
-          option(value='FashionBaby') Clothing, Shoes &amp; Jewelry - Baby
-          option(value='FashionBoys') Clothing, Shoes &amp; Jewelry - Boys
-          option(value='FashionGirls') Clothing, Shoes &amp; Jewelry - Girls
-          option(value='FashionMen') Clothing, Shoes &amp; Jewelry - Men
-          option(value='FashionWomen') Clothing, Shoes &amp; Jewelry - Women
-          option(value='GiftCards') Gift Cards
-          option(value='Grocery') Grocery &amp; Gourmet Food
-          option(value='Handmade') Handmade
-          option(value='HealthPersonalCare') Health &amp; Personal Care
-          option(value='HomeGarden') Home &amp; Kitchen
-          option(value='Industrial') Industrial &amp; Scientific
-          option(value='KindleStore') Ebooks
-          option(value='LawnAndGarden') Patio, Lawn &amp; Garden
-          option(value='Luggage') Luggage &amp; Travel Gear
-          option(value='Magazines') Magazine Subscriptions
-          option(value='MobileApps') Apps &amp; Games
-          option(value='Movies') Movies &amp; TV
-          option(value='MP3Downloads') Digital Music
-          option(value='Music') CDs &amp; Vinyl
-          option(value='MusicalInstruments') Musical Instruments
-          option(value='OfficeProducts') Office Products
-          option(value='Pantry') Prime Pantry
-          option(value='PCHardware') Computers
-          option(value='PetSupplies') Pet Supplies
-          option(value='Software') Software
-          option(value='SportingGoods') Sports &amp; Outdoors
-          option(value='Tools') Tools &amp; Home Improvement
-          option(value='Toys') Toys &amp; Games
-          option(value='UnboxVideo') Streaming Video
-          option(value='Vehicles') Vehicles
-          option(value='VideoGames') Video Games
-          option(value='Wine') Wine
-          option(value='Wireless') Cell Phones &amp; Accessories
-      .mdc-form-field
-        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input.mdc-textfield__input(type='text', name='productQuery', value=configObj.productQuery)
-          label.mdc-textfield__label Product Query
-      .mdc-form-field
-        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input.mdc-textfield__input(type='text', name='rssFeed', value=configObj.rssFeed)
-          label.mdc-textfield__label RSS Feed
-    fieldset
-      legend Corporate Identity
+      legend.mdc-typography--subheading2 🖌 Corporate Identity
       .mdc-form-field
         label.mdc-checkbox.mdc-js-checkbox.mdc-js-ripple-effect(for='uploadImage')
           input#uploadImage.mdc-checkbox__input(type='checkbox', onchange='toggleUploadImageField(this)')
@@ -123,15 +68,73 @@ block content
           #imageContainer.image-container
           #primaryFgColorWrapper.colorPicker-wrapper
             label.mdc-textfield__label Primary Foreground Color
-            input#primaryFgColorPickerInput(type='color', name='primaryFgColor', value=configObj.primaryFgColor)
+            input#primaryFgColorPickerInput(type='color', name='primaryFgColor', value=configObj.primaryFgColor, required)
           #primaryBgColorWrapper.colorPicker-wrapper
             label.mdc-textfield__label Primary Background Color
-            input#primaryBgColorPickerInput(type='color', name='primaryBgColor', value=configObj.primaryBgColor)
+            input#primaryBgColorPickerInput(type='color', name='primaryBgColor', value=configObj.primaryBgColor, required)
           #secondaryFgColorWrapper.colorPicker-wrapper
             label.mdc-textfield__label Secondary Foreground Color
-            input#secondaryFgColorPickerInput(type='color', name='secondaryFgColor', value=configObj.secondaryFgColor)
+            input#secondaryFgColorPickerInput(type='color', name='secondaryFgColor', value=configObj.secondaryFgColor, required)
           #secondaryBgColorWrapper.colorPicker-wrapper
             label.mdc-textfield__label Secondary Background Color
-            input#secondaryBgColorPickerInput(type='color', name='secondaryBgColor', value=configObj.secondaryBgColor)
+            input#secondaryBgColorPickerInput(type='color', name='secondaryBgColor', value=configObj.secondaryBgColor, required)
+    fieldset#industrySpecifics(style='display:none')
+      legend.mdc-typography--subheading2 🏭 Industry Specifics
+      .mdc-form-field
+        select#productCategory.mdc-select(name='productCategory')
+          include productcategories
+      .mdc-form-field
+        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+          input#productQuery.mdc-textfield__input(type='text', name='productQuery', value=configObj.productQuery)
+          label#productQueryLabel.mdc-textfield__label Product Query
+      .mdc-form-field
+        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+          input#rssFeed.mdc-textfield__input(type='url', name='rssFeed', value=configObj.rssFeed)
+          label#rssFeedLabel.mdc-textfield__label RSS Feed URL
     .mdc-form-field
-      input.mdc-button.mdc-js-button.mdc-button--raised.mdc-button--colored.mdc-js-ripple-effect(type='submit', value='Create PWA Demo')
+      input.mdc-button.mdc-button--raised.mdc-button--primary(type='submit', value='Create PWA Demo')
+  script.
+    const templateSelect = document.querySelector('#template');
+    const industrySpecificsFieldset = document.querySelector('#industrySpecifics');
+    const productCategorySelect = document.querySelector('#productCategory');
+    const productQueryInput = document.querySelector('#productQuery');
+    const productQueryLabel = document.querySelector('#productQueryLabel');
+    const rssFeedInput = document.querySelector('#rssFeed');
+    const rssFeedLabel = document.querySelector('#rssFeedLabel');
+
+    if (configObj.template) {
+      templateSelect.value = configObj.template;
+    }
+    templateSelect.addEventListener('change', (e) => {
+      const value = templateSelect.value;
+      console.log(value)
+      if (['retail', 'news'].indexOf(value) !== -1) {
+        industrySpecificsFieldset.style.display = 'block';
+      } else {
+        industrySpecificsFieldset.style.display = 'none';
+      }
+      productCategorySelect.style.display = 'none';
+      productCategorySelect.required = false;
+      productQueryInput.style.display = 'none';
+      productQueryInput.required = false;
+      productQueryLabel.style.display = 'none';
+      rssFeedInput.style.display = 'none';
+      rssFeedLabel.style.display = 'none';
+      rssFeedInput.required = false;
+      if (value === 'retail') {
+        productCategorySelect.style.display = 'block';
+        productCategorySelect.required = true;
+        productQueryInput.style.display = 'block';
+        productQueryLabel.style.display = 'block';
+        productQueryInput.required = true;
+      } else if (value === 'news') {
+        rssFeedInput.style.display = 'block';
+        rssFeedLabel.style.display = 'block';
+        rssFeedInput.required = true;
+      }
+    });
+
+    if (configObj.productCategory) {
+      document.querySelector('#productCategory').value = configObj.productCategory;
+    }
+

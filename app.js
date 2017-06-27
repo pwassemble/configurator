@@ -7,6 +7,8 @@ let bodyParser = require('body-parser');
 let index = require('./routes/index');
 let uploadFile = require('./routes/upload');
 let edit = require('./routes/edit');
+let bootstrap = require('./bootstrap');
+bootstrap.init();
 
 let app = express();
 
