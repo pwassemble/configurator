@@ -7,7 +7,7 @@ block content
   script.
     const configObj = !{JSON.stringify(configObj)};
   h1.mdc-typography--title.--mdc-theme-primary
-    img.logo(src='images/pwassemble.svg', height=50, width=50)
+    img.logo(src='/images/pwassemble.svg', height=50, width=50)
     | PWAssemble
     span.mdc-typography--caption.--mdc-theme-accent —Configurator
   form.params-form.mdc-cell.mdc-cell--12-col(action='/upload', method='POST', enctype="multipart/form-data")
@@ -40,15 +40,15 @@ block content
         .mdc-textfield.mdc-textfield--file
           input.mdc-textfield__input(placeholder='Company Logo', type='text', readonly, value=configObj.companyLogo, required)
           .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-            input(type='file', name='companyLogo', value=configObj.companyLogo, onchange='showFileName(this)', required)
+            input(type='file', name='companyLogo', onchange='showFileName(this)')
       .mdc-form-field
         .mdc-textfield.mdc-textfield--file
           input.mdc-textfield__input(placeholder='Homescreen Icon', type='text', readonly, value=configObj.homescreenIcon, required)
           .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-            input(type='file', name='homescreenIcon', value=configObj.homescreenIcon, onchange='showFileName(this)', required)
+            input(type='file', name='homescreenIcon', onchange='showFileName(this)')
       .mdc-form-field
         .mdc-textfield.mdc-textfield--file
-          input.mdc-textfield__input(placeholder='Hero Image', type='text', readonly, value=configObj.heroImage)
+          input.mdc-textfield__input(placeholder='Hero Image', type='text', readonly, value=configObj.heroImage, required)
           .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
             input(type='file', name='heroImage', value=configObj.heroImage, onchange='showFileName(this)')
     fieldset
@@ -105,9 +105,8 @@ block content
     if (configObj.template) {
       templateSelect.value = configObj.template;
     }
-    templateSelect.addEventListener('change', (e) => {
+    const onTemplateChange = () => {
       const value = templateSelect.value;
-      console.log(value)
       if (['retail', 'news'].indexOf(value) !== -1) {
         industrySpecificsFieldset.style.display = 'block';
       } else {
@@ -132,7 +131,9 @@ block content
         rssFeedLabel.style.display = 'block';
         rssFeedInput.required = true;
       }
-    });
+    };
+    templateSelect.addEventListener('change', onTemplateChange);
+    onTemplateChange();
 
     if (configObj.productCategory) {
       document.querySelector('#productCategory').value = configObj.productCategory;
