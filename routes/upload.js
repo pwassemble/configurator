@@ -21,6 +21,10 @@ let fieldsArray = [
   {name: 'template', maxCount: 1},
 ];
 
+router.get('/', function(req, res) {
+  res.redirect('/');
+});
+
 router.post('/', images.multer.fields(fieldsArray), function(req, res, next) {
   images
     .uploadFile(req)

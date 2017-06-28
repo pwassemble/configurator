@@ -5,7 +5,7 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
 let index = require('./routes/index');
-let uploadFile = require('./routes/upload');
+let upload = require('./routes/upload');
 let edit = require('./routes/edit');
 let bootstrap = require('./bootstrap');
 bootstrap.init();
@@ -28,7 +28,7 @@ app.use(
 );
 
 app.use('/', index);
-app.use('/upload', uploadFile);
+app.use('/upload', upload);
 app.use('/edit', edit);
 
 // catch 404 and forward to error handler

@@ -19,11 +19,15 @@ let parseFileNames = function(obj) {
 };
 
 /* GET home page. */
-router.get('/:bucketId', function(req, res) {
+router.get('/', function(req, res) {
+  const id = req.query.id;
+  if (!id) {
+    return res.render('edit');
+  }
   images
-    .getConfigJson(req.params.bucketId)
+    .getConfigJson(id)
     .then(function(configObj) {
-      configObj.bucketName = req.params.bucketId;
+      configObj.bucketName = id;
       parseFileNames(configObj);
       res.render('index', {configObj: configObj});
     })

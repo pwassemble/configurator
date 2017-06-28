@@ -11,10 +11,17 @@ router.get('/', function(req, res, next) {
 
 router.post('/', images.multer.single('theFile'), function(req, res) {
   let file = req.file;
-  let newPath = path.join(__dirname, '/../public/uploads/', file.originalname);
-
+  let newPath = path.join(__dirname, '..', 'public', 'uploads',
+      file.originalname);
   fs.writeFile(newPath, file.buffer, function(err, data) {
     res.send('/uploads/' + file.originalname);
+    setTimeout(() => {
+      fs.unlink(newPath, (err) => {
+        if (err) {
+          console.warn(err);
+        }
+      });
+    }, 60000);
   });
 });
 

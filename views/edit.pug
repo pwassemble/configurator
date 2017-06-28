@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  a(href='/').text-decoration-none
+    h1.mdc-typography--title.--mdc-theme-primary
+      img.logo(src='/images/pwassemble.svg', height=50, width=50)
+      | PWAssemble
+      span.mdc-typography--caption.--mdc-theme-accent —Configurator
+  form.params-form.mdc-cell.mdc-cell--12-col(action='/edit')
+    .mdc-form-field
+      .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+        input.mdc-textfield__input(type='text', name='id', required)
+        label.mdc-textfield__label(for='companyName') PWAssemble ID
+    .mdc-form-field
+      input.mdc-button.mdc-button--raised.mdc-button--primary(type='submit', value='Edit PWA Demo')

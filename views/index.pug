@@ -6,93 +6,98 @@ block script
 block content
   script.
     const configObj = !{JSON.stringify(configObj)};
-  h1.mdc-typography--title.--mdc-theme-primary
-    img.logo(src='/images/pwassemble.svg', height=50, width=50)
-    | PWAssemble
-    span.mdc-typography--caption.--mdc-theme-accent —Configurator
-  form.params-form.mdc-cell.mdc-cell--12-col(action='/upload', method='POST', enctype="multipart/form-data")
-    input(type='hidden', name='bucketName', value=configObj.bucketName)
-    fieldset
-      legend.mdc-typography--subheading2 📝 Company Data
-      .mdc-form-field
-        select.mdc-select(id='template', name='template', required)
-          option(value='', disabled, selected) —Select Industry Template—
-          include templates
-      .mdc-form-field
-        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input.mdc-textfield__input(type='text', name='companyName', required, value=configObj.companyName)
-          label.mdc-textfield__label(for='companyName') Company Name
-      .mdc-form-field
-        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input.mdc-textfield__input(type='text', name='heroText', value=configObj.heroText)
-          label.mdc-textfield__label Hero Text
-      .mdc-form-field
-        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input.mdc-textfield__input(type='text', name='subText', value=configObj.subText)
-          label.mdc-textfield__label Sub Text
-      .mdc-form-field
-        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input.mdc-textfield__input(type='text', name='ctaText', value=configObj.ctaText)
-          label.mdc-textfield__label Call-to-Action Text
-    fieldset
-      legend.mdc-typography--subheading2 🎨 Company Visuals
-      .mdc-form-field
-        .mdc-textfield.mdc-textfield--file
-          input.mdc-textfield__input(placeholder='Company Logo', type='text', readonly, value=configObj.companyLogo, required)
-          .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-            input(type='file', name='companyLogo', onchange='showFileName(this)')
-      .mdc-form-field
-        .mdc-textfield.mdc-textfield--file
-          input.mdc-textfield__input(placeholder='Homescreen Icon', type='text', readonly, value=configObj.homescreenIcon, required)
-          .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-            input(type='file', name='homescreenIcon', onchange='showFileName(this)')
-      .mdc-form-field
-        .mdc-textfield.mdc-textfield--file
-          input.mdc-textfield__input(placeholder='Hero Image', type='text', readonly, value=configObj.heroImage, required)
-          .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-            input(type='file', name='heroImage', value=configObj.heroImage, onchange='showFileName(this)')
-    fieldset
-      legend.mdc-typography--subheading2 🖌 Corporate Identity
-      .mdc-form-field
-        label.mdc-checkbox.mdc-js-checkbox.mdc-js-ripple-effect(for='uploadImage')
-          input#uploadImage.mdc-checkbox__input(type='checkbox', onchange='toggleUploadImageField(this)')
-          span.mdc-checkbox__label Upload Image to Pick Colors
-      .mdc-form-field
-        #fileForPicker(style='display: none;')
+  a(href='/').text-decoration-none
+    h1.mdc-typography--title.--mdc-theme-primary
+      img.logo(src='/images/pwassemble.svg', height=50, width=50)
+      | PWAssemble
+      span.mdc-typography--caption.--mdc-theme-accent —Configurator
+  div
+    input.mdc-button.mdc-button--raised.mdc-button--primary(type='button', onclick='window.location.href="/edit";', value='⚙️ Edit existing PWA')
+  .space
+    | 🎬 &nbsp;Create a new PWA:
+    form.params-form.mdc-cell.mdc-cell--12-col(action='/upload', method='POST', enctype="multipart/form-data")
+      input(type='hidden', name='bucketName', value=configObj.bucketName)
+      fieldset
+        legend.mdc-typography--subheading2 📝 Company Data
+        .mdc-form-field
+          select.mdc-select(id='template', name='template', required)
+            option(value='', disabled, selected) —Select Industry Template—
+            include templates
+        .mdc-form-field
+          .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+            input.mdc-textfield__input(type='text', name='companyName', required, value=configObj.companyName)
+            label.mdc-textfield__label(for='companyName') Company Name
+        .mdc-form-field
+          .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+            input.mdc-textfield__input(type='text', name='heroText', value=configObj.heroText)
+            label.mdc-textfield__label Hero Text
+        .mdc-form-field
+          .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+            input.mdc-textfield__input(type='text', name='subText', value=configObj.subText)
+            label.mdc-textfield__label Sub Text
+        .mdc-form-field
+          .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+            input.mdc-textfield__input(type='text', name='ctaText', value=configObj.ctaText)
+            label.mdc-textfield__label Call-to-Action Text
+      fieldset
+        legend.mdc-typography--subheading2 🎨 Company Visuals
+        .mdc-form-field
           .mdc-textfield.mdc-textfield--file
-            input.mdc-textfield__input(placeholder='File for color picker', type='text', readonly)
+            input.mdc-textfield__input(placeholder='Company Logo', type='text', readonly, value=configObj.companyLogo, required)
             .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-                input(type='file', onchange='showFileName(this), uploadFile(this)')
+              input(type='file', name='companyLogo', onchange='showFileName(this)')
+        .mdc-form-field
+          .mdc-textfield.mdc-textfield--file
+            input.mdc-textfield__input(placeholder='Homescreen Icon', type='text', readonly, value=configObj.homescreenIcon, required)
+            .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
+              input(type='file', name='homescreenIcon', onchange='showFileName(this)')
+        .mdc-form-field
+          .mdc-textfield.mdc-textfield--file
+            input.mdc-textfield__input(placeholder='Hero Image', type='text', readonly, value=configObj.heroImage, required)
+            .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
+              input(type='file', name='heroImage', value=configObj.heroImage, onchange='showFileName(this)')
+      fieldset
+        legend.mdc-typography--subheading2 🖌 Corporate Identity
+        .mdc-form-field
+          label.mdc-checkbox.mdc-js-checkbox.mdc-js-ripple-effect(for='uploadImage')
+            input#uploadImage.mdc-checkbox__input(type='checkbox', onchange='toggleUploadImageField(this)')
+            span.mdc-checkbox__label Upload Image to Pick Colors
+        .mdc-form-field
+          #fileForPicker(style='display: none;')
+            .mdc-textfield.mdc-textfield--file
+              input.mdc-textfield__input(placeholder='File for color picker', type='text', readonly)
+              .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
+                  input(type='file', onchange='showFileName(this), uploadFile(this)')
+        .mdc-form-field
+          #colorsBlock
+            #imageContainer.image-container
+            #primaryFgColorWrapper.colorPicker-wrapper
+              label.mdc-textfield__label Primary Foreground Color
+              input#primaryFgColorPickerInput(type='color', name='primaryFgColor', value=configObj.primaryFgColor, required)
+            #primaryBgColorWrapper.colorPicker-wrapper
+              label.mdc-textfield__label Primary Background Color
+              input#primaryBgColorPickerInput(type='color', name='primaryBgColor', value=configObj.primaryBgColor, required)
+            #secondaryFgColorWrapper.colorPicker-wrapper
+              label.mdc-textfield__label Secondary Foreground Color
+              input#secondaryFgColorPickerInput(type='color', name='secondaryFgColor', value=configObj.secondaryFgColor, required)
+            #secondaryBgColorWrapper.colorPicker-wrapper
+              label.mdc-textfield__label Secondary Background Color
+              input#secondaryBgColorPickerInput(type='color', name='secondaryBgColor', value=configObj.secondaryBgColor, required)
+      fieldset#industrySpecifics(style='display:none')
+        legend.mdc-typography--subheading2 🏭 Industry Specifics
+        .mdc-form-field
+          select#productCategory.mdc-select(name='productCategory')
+            include productcategories
+        .mdc-form-field
+          .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+            input#productQuery.mdc-textfield__input(type='text', name='productQuery', value=configObj.productQuery)
+            label#productQueryLabel.mdc-textfield__label Product Query
+        .mdc-form-field
+          .mdc-textfield(data-mdc-auto-init='MDCTextfield')
+            input#rssFeed.mdc-textfield__input(type='url', name='rssFeed', value=configObj.rssFeed)
+            label#rssFeedLabel.mdc-textfield__label RSS Feed URL
       .mdc-form-field
-        #colorsBlock
-          #imageContainer.image-container
-          #primaryFgColorWrapper.colorPicker-wrapper
-            label.mdc-textfield__label Primary Foreground Color
-            input#primaryFgColorPickerInput(type='color', name='primaryFgColor', value=configObj.primaryFgColor, required)
-          #primaryBgColorWrapper.colorPicker-wrapper
-            label.mdc-textfield__label Primary Background Color
-            input#primaryBgColorPickerInput(type='color', name='primaryBgColor', value=configObj.primaryBgColor, required)
-          #secondaryFgColorWrapper.colorPicker-wrapper
-            label.mdc-textfield__label Secondary Foreground Color
-            input#secondaryFgColorPickerInput(type='color', name='secondaryFgColor', value=configObj.secondaryFgColor, required)
-          #secondaryBgColorWrapper.colorPicker-wrapper
-            label.mdc-textfield__label Secondary Background Color
-            input#secondaryBgColorPickerInput(type='color', name='secondaryBgColor', value=configObj.secondaryBgColor, required)
-    fieldset#industrySpecifics(style='display:none')
-      legend.mdc-typography--subheading2 🏭 Industry Specifics
-      .mdc-form-field
-        select#productCategory.mdc-select(name='productCategory')
-          include productcategories
-      .mdc-form-field
-        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input#productQuery.mdc-textfield__input(type='text', name='productQuery', value=configObj.productQuery)
-          label#productQueryLabel.mdc-textfield__label Product Query
-      .mdc-form-field
-        .mdc-textfield(data-mdc-auto-init='MDCTextfield')
-          input#rssFeed.mdc-textfield__input(type='url', name='rssFeed', value=configObj.rssFeed)
-          label#rssFeedLabel.mdc-textfield__label RSS Feed URL
-    .mdc-form-field
-      input.mdc-button.mdc-button--raised.mdc-button--primary(type='submit', value='Create PWA Demo')
+        input.mdc-button.mdc-button--raised.mdc-button--primary(type='submit', value='🔮 Save new PWA Demo')
   script.
     const templateSelect = document.querySelector('#template');
     const industrySpecificsFieldset = document.querySelector('#industrySpecifics');

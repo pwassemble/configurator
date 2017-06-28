@@ -1,7 +1,18 @@
-
 extends layout
 
 block content
-  console.log(result)
-  h1 Your Progressive Web App Demo is ready
-  a(href='https://pwassemble.herokuapp.com/?id=' + result.id)= 'https://pwassemble.herokuapp.com/?id=' + result.id
+  a(href='/').text-decoration-none
+    h1.mdc-typography--title.--mdc-theme-primary
+      img.logo(src='/images/pwassemble.svg', height=50, width=50)
+      | PWAssemble
+      span.mdc-typography--caption.--mdc-theme-accent —Configurator
+  h2.mdc-typography--title.--mdc-theme-secondary 🎉 Your Progressive Web App Demo is ready
+  ul.mdc-list
+    li.mdc-list-item
+      | 👀 &nbsp;Find your demo&nbsp;
+      a(href='https://pwassemble.herokuapp.com/?id=' + result.id) here
+      | .
+    li.mdc-list-item
+      | ⚙️ &nbsp;Edit your demo&nbsp;
+      a(href='/edit?id=' + result.id) here
+      | .

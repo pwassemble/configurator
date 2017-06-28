@@ -9,25 +9,19 @@ window.uploadFile = function(el) {
       imageContainer.innerHTML = '';
       imageContainer.appendChild(img);
       img.onload = function() {
-        img.width = 500;
+        img.classList.add('colorpicker-image');
         generateColorPicker('primaryFgColor', 'Primary foreground Color', img);
         generateColorPicker('primaryBgColor', 'Primary background Color', img);
-        generateColorPicker(
-          'secondaryFgColor',
-          'Secondary foreground Color',
-          img
-        );
-        generateColorPicker(
-          'secondaryBgColor',
-          'Secondary background Color',
-          img
-        );
+        generateColorPicker('secondaryFgColor', 'Secondary foreground Color',
+            img);
+        generateColorPicker('secondaryBgColor', 'Secondary background Color',
+            img);
       };
     }
   };
   let formData = new FormData();
   formData.append('theFile', file);
-  xhr.open('POST', 'http://localhost:4000');
+  xhr.open('POST', '/');
   xhr.send(formData);
 };
 
