@@ -8,6 +8,16 @@
   max-width: 500px;
 }
 
+.preview-image {
+  display: block;
+  height: 50px;
+  width: auto;
+}
+
+.no-input {
+  pointer-events: none;
+}
+
 .text-decoration-none {
   text-decoration: none;
   color: initial;

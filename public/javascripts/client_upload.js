@@ -98,4 +98,6 @@ window.generateNativeColorPicker = function(id) {
 
 window.showFileName = function(target) {
   target.parentElement.parentElement.childNodes[0].value = target.files[0].name;
+  target.parentElement.parentElement.childNodes[1].src =
+      window.URL.createObjectURL(target.files[0]);
 };

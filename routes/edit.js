@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
       res.render('index', {configObj: configObj});
     })
     .catch(function(error) {
-      console.log(error);
+      res.render('error', {error: error});
     });
 });
 

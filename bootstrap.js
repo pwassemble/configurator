@@ -23,7 +23,8 @@ const bootstrap = {
     }, function(err, response, body) {
       if (err || response.statusCode !== 200) {
         res.status(response.statusCode || 500);
-        res.render('error');
+        res.render('error',
+            {error: err || Error(`Status code ${response.statusCode}`)});
       }
       const templatePug = body.map((template) => {
         return `option(value='${template.name}') ${template.name

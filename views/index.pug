@@ -43,19 +43,22 @@ block content
         legend.mdc-typography--subheading2 🎨 Company Visuals
         .mdc-form-field
           .mdc-textfield.mdc-textfield--file
-            input.mdc-textfield__input(placeholder='Company Logo', type='text', readonly, value=configObj.companyLogo, required)
+            input.mdc-textfield__input.no-input(placeholder='Company Logo', type='text', value=configObj.companyLogo, required)
+            img.preview-image(src=configObj.companyLogoUrl ? configObj.companyLogoUrl : '')
             .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-              input(type='file', name='companyLogo', onchange='showFileName(this)')
+              input(type='file', accept='image/*', name='companyLogo', onchange='showFileName(this)')
         .mdc-form-field
           .mdc-textfield.mdc-textfield--file
-            input.mdc-textfield__input(placeholder='Homescreen Icon', type='text', readonly, value=configObj.homescreenIcon, required)
+            input.mdc-textfield__input.no-input(placeholder='Homescreen Icon', type='text', value=configObj.homescreenIcon, required)
+            img.preview-image(src=configObj.homescreenIconUrl ? configObj.homescreenIconUrl : '')
             .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-              input(type='file', name='homescreenIcon', onchange='showFileName(this)')
+              input(type='file', accept='image/*', name='homescreenIcon', onchange='showFileName(this)')
         .mdc-form-field
           .mdc-textfield.mdc-textfield--file
-            input.mdc-textfield__input(placeholder='Hero Image', type='text', readonly, value=configObj.heroImage, required)
+            input.mdc-textfield__input.no-input(placeholder='Hero Image', type='text', value=configObj.heroImage, required)
+            img.preview-image(src=configObj.heroImageUrl ? configObj.heroImageUrl : '')
             .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-              input(type='file', name='heroImage', value=configObj.heroImage, onchange='showFileName(this)')
+              input(type='file', accept='image/*', name='heroImage', onchange='showFileName(this)')
       fieldset
         legend.mdc-typography--subheading2 🖌 Corporate Identity
         .mdc-form-field
@@ -67,7 +70,7 @@ block content
             .mdc-textfield.mdc-textfield--file
               input.mdc-textfield__input(placeholder='File for color picker', type='text', readonly)
               .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
-                  input(type='file', onchange='showFileName(this), uploadFile(this)')
+                  input(type='file', accept='image/*', onchange='showFileName(this), uploadFile(this)')
         .mdc-form-field
           #colorsBlock
             #imageContainer.image-container
