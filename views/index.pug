@@ -43,19 +43,19 @@ block content
         legend.mdc-typography--subheading2 🎨 Company Visuals
         .mdc-form-field
           .mdc-textfield.mdc-textfield--file
-            input.mdc-textfield__input.no-input(placeholder='Company Logo', type='text', value=configObj.companyLogo, required)
+            input.mdc-textfield__input.no-input(placeholder='Company Logo', type='text', value=configObj.companyLogoUrl.match(/([^\/]*)$/g)[0], required)
             img.preview-image(src=configObj.companyLogoUrl ? configObj.companyLogoUrl : '')
             .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
               input(type='file', accept='image/*', name='companyLogo', onchange='showFileName(this)')
         .mdc-form-field
           .mdc-textfield.mdc-textfield--file
-            input.mdc-textfield__input.no-input(placeholder='Homescreen Icon', type='text', value=configObj.homescreenIcon, required)
+            input.mdc-textfield__input.no-input(placeholder='Homescreen Icon', type='text', value=configObj.homescreenIconUrl.match(/([^\/]*)$/g)[0], required)
             img.preview-image(src=configObj.homescreenIconUrl ? configObj.homescreenIconUrl : '')
             .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
               input(type='file', accept='image/*', name='homescreenIcon', onchange='showFileName(this)')
         .mdc-form-field
           .mdc-textfield.mdc-textfield--file
-            input.mdc-textfield__input.no-input(placeholder='Hero Image', type='text', value=configObj.heroImage, required)
+            input.mdc-textfield__input.no-input(placeholder='Hero Image', type='text', value=configObj.heroImageUrl.match(/([^\/]*)$/g)[0], required)
             img.preview-image(src=configObj.heroImageUrl ? configObj.heroImageUrl : '')
             .mdc-button.mdc-button--primary.mdc-button--icon.mdc-button--file
               input(type='file', accept='image/*', name='heroImage', onchange='showFileName(this)')
@@ -100,7 +100,7 @@ block content
             input#rssFeed.mdc-textfield__input(type='url', name='rssFeed', value=configObj.rssFeed)
             label#rssFeedLabel.mdc-textfield__label RSS Feed URL
       .mdc-form-field
-        input.mdc-button.mdc-button--raised.mdc-button--primary(type='submit', value='🔮 Save new PWA Demo')
+        input.mdc-button.mdc-button--raised.mdc-button--primary(type='submit', value='🔮 Save PWA Demo')
   script.
     const templateSelect = document.querySelector('#template');
     const industrySpecificsFieldset = document.querySelector('#industrySpecifics');
