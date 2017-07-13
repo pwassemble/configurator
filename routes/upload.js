@@ -32,7 +32,7 @@ router.post('/', images.multer.fields(fieldsArray), function(req, res, next) {
       res.render('ready', {result: {id: result}});
     })
     .catch(function(error) {
-      console.log(error);
+      console.error(error);
       res.render('error', {error: error});
     });
 });
