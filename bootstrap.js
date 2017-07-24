@@ -28,7 +28,7 @@ const bootstrap = {
       }
       const templatePug = body.map((template) => {
         return `option(value='${template.name}') ${template.name
-            .replace(/\w\S*/g, (txt) => {
+            .replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
               return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             })}`;
       }).join('\n');
